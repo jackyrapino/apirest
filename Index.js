@@ -1,5 +1,5 @@
 const fastify = require('fastify')({logger:true})
-const PORT = 4000
+const PORT = 3000
 
 async function start (){
     try {
