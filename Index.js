@@ -1,16 +1,15 @@
-const fastify = require('fastify')({logger:true})
-const PORT = 3000
+const fastify = require('fastify')({
+    logger: true,
+    pluginTimeout: 10000
+  })
 
-async function start (){
-    try {
-        await fastify.listen(PORT)
-    } catch (error) {
-        fastify.log.error(error)
-        process.exit(1)
-        
+
+fastify.listen(process.env.PORT || 3000, '0.0.0.0', (err) => {
+    if (err) {
+        fastify.log.error(err)
+      process.exit(1)
     }
-
-}
+  })
 
 fastify.get('/bienvenida',(req, reply)=> {
 
@@ -31,5 +30,4 @@ fastify.put('/bienvenida/:nombre/:apellido',(req, reply)=> {
     reply.send({saludo:`Hola ${name} ${lastname}`}) 
 })
 
-start()
 
