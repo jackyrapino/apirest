@@ -10,19 +10,47 @@ const connection = sql.createPool({
 });
 
 user.getAll = (req, res) => {
+
     const consultaUser = 'SELECT * FROM Usuarios'
+
     connection.query(consultaUser, (error, resultados) => {
         if (resultados.length > 0) {
             res.send(resultados)
-        }else{
+        } else {
             res.statusCode = 503
             res.send("no hay usuarios");
-            
+
         }
     })
-
-
 }
+
+user.add = (req, res) => {
+
+    const consultaSQL = 'INSERT INTO Usuarios SET ?'
+
+    const { nombre, apellido, mail, clave, foto } = request.body
+
+    const newUser = {
+        nombre: nombre,
+        apellido: apellido,
+        mail: mail,
+        clave: clave,
+        foto: foto
+
+    }
+
+    connection.query(consultaSQL, newUser, (error, resultados) => {
+        if (resultados) {
+            res.send(resultados)
+        } else {
+            res.statusCode = 503
+            res.send("No se pudo agregar");
+
+        }
+    })
+}
+
+
 
 module.exports = user;
 
