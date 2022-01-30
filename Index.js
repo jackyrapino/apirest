@@ -1,11 +1,9 @@
-const fastify = require('fastify')('fastify')({
+const fastify = require('fastify')({
   logger: true,
   pluginTimeout: 10000
 })
 
-
 const user = require('./user.js')
-
 
 
 fastify.listen(process.env.PORT || 3000, '0.0.0.0', (err) => {
@@ -15,31 +13,11 @@ fastify.listen(process.env.PORT || 3000, '0.0.0.0', (err) => {
   }
 })
 
-fastify.get('/bienvenida', (req, res) => {
-
-  res.send({ saludo: 'hola Bienvenido' })
-})
-
-
-fastify.post('/bienvenida', (req, reply) => {
-
-  let name = req.body.nombre
-  reply.send({ saludo: 'hola ' + name })
-})
-
-fastify.put('/bienvenida/:nombre/:apellido', (req, reply) => {
-
-  let name = req.params.nombre
-  let lastname = req.params.apellido
-  reply.send({ saludo: `Hola ${name} ${lastname}` })
-})
-
 
 fastify.get('/usuarios', user.getAll)
 
 fastify.post('/usuarios', user.add)
 
+fastify.put('/usuarios/:id', user.modifyById )
 
-
-
-
+fastify.delete('/usuarios/:id', user.deleteId)
