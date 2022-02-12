@@ -1,7 +1,7 @@
 //Importar Fastify
 const fastify = require("fastify")({
-  logger: true,
-  pluginTimeout: 10000,
+    logger: true,
+    pluginTimeout: 10000,
 });
 
 //importar clase usuario
@@ -9,10 +9,10 @@ const user = require("./user.js");
 
 //Inicializar servidor Fastify
 fastify.listen(process.env.PORT || 3000, "0.0.0.0", (err) => {
-  if (err) {
-    fastify.log.error(err);
-    process.exit(1);
-  }
+    if (err) {
+        fastify.log.error(err);
+        process.exit(1);
+    }
 });
 
 //Endpoints de la api rest
