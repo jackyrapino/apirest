@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "fastify": "^3.25.3",
+    "fastify-cors": "^6.0.2",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.15"
   }

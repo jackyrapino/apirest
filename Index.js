@@ -15,6 +15,11 @@ fastify.listen(process.env.PORT || 3000, "0.0.0.0", (err) => {
     }
 });
 
+fastify.register(require("fastify-cors"), {
+    origin: "*",
+    methods: ["POST", "GET", "PUT", "DELETE"]
+})
+
 //Endpoints de la api rest
 fastify.get("/usuarios", user.getAll);
 
